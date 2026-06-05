@@ -158,36 +158,67 @@
           <p style="font-size:10px;color:rgb(var(--muted));margin-top:6px;letter-spacing:.15em;text-transform:uppercase;">Video Library</p>
         </div>
 
+        <!-- Tab switcher -->
+        <div style="padding:0 16px 8px;display:flex;gap:6px;">
+          <button id="tab-videos" onclick="switchSidebarTab('videos')" style="flex:1;padding:9px 6px;border-radius:10px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;transition:all .2s;border:1px solid rgb(var(--accent)/.4);background:rgb(var(--accent)/.15);color:rgb(var(--accent));display:flex;align-items:center;justify-content:center;gap:6px;">
+            <i data-lucide="play-circle" style="width:14px;height:14px;"></i> Videos
+          </button>
+          <button id="tab-sports" onclick="switchSidebarTab('sports')" style="flex:1;padding:9px 6px;border-radius:10px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;transition:all .2s;border:1px solid rgb(var(--text)/.1);background:transparent;color:rgb(var(--muted));display:flex;align-items:center;justify-content:center;gap:6px;">
+            <i data-lucide="trophy" style="width:14px;height:14px;"></i> Sports
+          </button>
+        </div>
+
         <!-- Nav -->
         <nav id="category-nav" style="flex:1;padding:0 16px;overflow-y:auto;display:flex;flex-direction:column;gap:6px;">
-          <div style="font-size:10px;font-weight:700;color:rgb(var(--muted));padding:0 16px;margin-bottom:6px;letter-spacing:.1em;text-transform:uppercase;">Browse</div>
 
-          <button class="nav-btn nav-btn-active" data-view="browse" data-cat="All" style="width:100%;display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:12px;font-size:13px;font-weight:600;border:1px solid;cursor:pointer;transition:all .2s;text-align:left;">
-            <i data-lucide="layout-grid" style="width:18px;height:18px;"></i> All
-          </button>
-          <button class="nav-btn nav-btn-idle" data-view="browse" data-cat="Action" style="width:100%;display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:12px;font-size:13px;font-weight:600;border:1px solid;cursor:pointer;transition:all .2s;text-align:left;">
-            <i data-lucide="zap" style="width:18px;height:18px;"></i> Action
-          </button>
-          <button class="nav-btn nav-btn-idle" data-view="browse" data-cat="Fantasy" style="width:100%;display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:12px;font-size:13px;font-weight:600;border:1px solid;cursor:pointer;transition:all .2s;text-align:left;">
-            <i data-lucide="rocket" style="width:18px;height:18px;"></i> Fantasy
-          </button>
-          <button class="nav-btn nav-btn-idle" data-view="browse" data-cat="Anime" style="width:100%;display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:12px;font-size:13px;font-weight:600;border:1px solid;cursor:pointer;transition:all .2s;text-align:left;">
-            <i data-lucide="sparkles" style="width:18px;height:18px;"></i> Anime
-          </button>
-          <button class="nav-btn nav-btn-idle" data-view="browse" data-cat="Animation" style="width:100%;display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:12px;font-size:13px;font-weight:600;border:1px solid;cursor:pointer;transition:all .2s;text-align:left;">
-            <i data-lucide="film" style="width:18px;height:18px;"></i> Animation
-          </button>
-          <button class="nav-btn nav-btn-idle" data-view="browse" data-cat="Thrill" style="width:100%;display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:12px;font-size:13px;font-weight:600;border:1px solid;cursor:pointer;transition:all .2s;text-align:left;">
-            <i data-lucide="activity" style="width:18px;height:18px;"></i> Thrill
-          </button>
-          <button class="nav-btn nav-btn-idle" data-view="browse" data-cat="Comedy" style="width:100%;display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:12px;font-size:13px;font-weight:600;border:1px solid;cursor:pointer;transition:all .2s;text-align:left;">
-            <i data-lucide="star" style="width:18px;height:18px;"></i> Comedy
-          </button>
+          <!-- Videos panel -->
+          <div id="sidebar-panel-videos">
+            <div style="font-size:10px;font-weight:700;color:rgb(var(--muted));padding:0 16px;margin-bottom:6px;letter-spacing:.1em;text-transform:uppercase;">Browse</div>
+            <button class="nav-btn nav-btn-active" data-view="browse" data-cat="All" style="width:100%;display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:12px;font-size:13px;font-weight:600;border:1px solid;cursor:pointer;transition:all .2s;text-align:left;">
+              <i data-lucide="layout-grid" style="width:18px;height:18px;"></i> All
+            </button>
+            <button class="nav-btn nav-btn-idle" data-view="browse" data-cat="Action" style="width:100%;display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:12px;font-size:13px;font-weight:600;border:1px solid;cursor:pointer;transition:all .2s;text-align:left;">
+              <i data-lucide="zap" style="width:18px;height:18px;"></i> Action
+            </button>
+            <button class="nav-btn nav-btn-idle" data-view="browse" data-cat="Fantasy" style="width:100%;display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:12px;font-size:13px;font-weight:600;border:1px solid;cursor:pointer;transition:all .2s;text-align:left;">
+              <i data-lucide="rocket" style="width:18px;height:18px;"></i> Fantasy
+            </button>
+            <button class="nav-btn nav-btn-idle" data-view="browse" data-cat="Anime" style="width:100%;display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:12px;font-size:13px;font-weight:600;border:1px solid;cursor:pointer;transition:all .2s;text-align:left;">
+              <i data-lucide="sparkles" style="width:18px;height:18px;"></i> Anime
+            </button>
+            <button class="nav-btn nav-btn-idle" data-view="browse" data-cat="Animation" style="width:100%;display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:12px;font-size:13px;font-weight:600;border:1px solid;cursor:pointer;transition:all .2s;text-align:left;">
+              <i data-lucide="film" style="width:18px;height:18px;"></i> Animation
+            </button>
+            <button class="nav-btn nav-btn-idle" data-view="browse" data-cat="Thrill" style="width:100%;display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:12px;font-size:13px;font-weight:600;border:1px solid;cursor:pointer;transition:all .2s;text-align:left;">
+              <i data-lucide="activity" style="width:18px;height:18px;"></i> Thrill
+            </button>
+            <button class="nav-btn nav-btn-idle" data-view="browse" data-cat="Comedy" style="width:100%;display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:12px;font-size:13px;font-weight:600;border:1px solid;cursor:pointer;transition:all .2s;text-align:left;">
+              <i data-lucide="star" style="width:18px;height:18px;"></i> Comedy
+            </button>
+            <div style="margin-top:24px;font-size:10px;font-weight:700;color:rgb(var(--muted));padding:0 16px;margin-bottom:6px;letter-spacing:.1em;text-transform:uppercase;">System</div>
+            <button class="nav-btn nav-btn-idle" data-view="settings" style="width:100%;display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:12px;font-size:13px;font-weight:600;border:1px solid;cursor:pointer;transition:all .2s;text-align:left;">
+              <i data-lucide="settings" style="width:18px;height:18px;"></i> Settings
+            </button>
+          </div>
 
-          <div style="margin-top:24px;font-size:10px;font-weight:700;color:rgb(var(--muted));padding:0 16px;margin-bottom:6px;letter-spacing:.1em;text-transform:uppercase;">System</div>
-          <button class="nav-btn nav-btn-idle" data-view="settings" style="width:100%;display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:12px;font-size:13px;font-weight:600;border:1px solid;cursor:pointer;transition:all .2s;text-align:left;">
-            <i data-lucide="settings" style="width:18px;height:18px;"></i> Settings
-          </button>
+          <!-- Sports panel -->
+          <div id="sidebar-panel-sports" style="display:none;">
+            <div style="font-size:10px;font-weight:700;color:rgb(var(--muted));padding:0 16px;margin-bottom:6px;letter-spacing:.1em;text-transform:uppercase;">Sports</div>
+            <button class="nav-btn nav-btn-idle" data-view="browse" data-cat="Football" style="width:100%;display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:12px;font-size:13px;font-weight:600;border:1px solid;cursor:pointer;transition:all .2s;text-align:left;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 0 1 6.7 17.1M12 2a10 10 0 0 0-6.7 17.1"/><path d="M12 22V12M5.3 4.9l3.4 3.4M15.3 8.3l3.4-3.4"/><path d="M5.3 19.1 12 12l6.7 7.1"/></svg> Football
+            </button>
+            <button class="nav-btn nav-btn-idle" data-view="browse" data-cat="Basketball" style="width:100%;display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:12px;font-size:13px;font-weight:600;border:1px solid;cursor:pointer;transition:all .2s;text-align:left;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M4.93 4.93a15 15 0 0 1 14.14 14.14M4.93 19.07A15 15 0 0 1 19.07 4.93"/><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/></svg> Basketball
+            </button>
+            <button class="nav-btn nav-btn-idle" data-view="browse" data-cat="Tennis" style="width:100%;display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:12px;font-size:13px;font-weight:600;border:1px solid;cursor:pointer;transition:all .2s;text-align:left;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M6.4 6.4a8 8 0 0 0 0 11.2M17.6 6.4a8 8 0 0 1 0 11.2"/></svg> Tennis
+            </button>
+            <div style="margin-top:24px;font-size:10px;font-weight:700;color:rgb(var(--muted));padding:0 16px;margin-bottom:6px;letter-spacing:.1em;text-transform:uppercase;">System</div>
+            <button class="nav-btn nav-btn-idle" data-view="settings" style="width:100%;display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:12px;font-size:13px;font-weight:600;border:1px solid;cursor:pointer;transition:all .2s;text-align:left;">
+              <i data-lucide="settings" style="width:18px;height:18px;"></i> Settings
+            </button>
+          </div>
+
         </nav>
 
         <!-- Status -->
@@ -408,26 +439,29 @@
 //              e.g. a direct link to a JPG/PNG
 //              leave as "" to show a letter placeholder instead
 // ─────────────────────────────────────────────
+// Format: [title, iframeSrc, posterURL, category, description, year]
 const VIDEOS = [
-  ["Super Mario Bros Galaxy",   "https://luluvdo.com/e/866pywxfu1u6", "smbg.png", "Animation",  "The sequel to the original Mario movie brings even more joyous and tense moments."],
-  ["F1: The Movie",        "https://luluvdo.com/e/n890i1nwnqt2", "f1.png", "Thrill",  "A thrilling movie with a showcase of drivers and the racing industry"],
-  ["Avengers: Age Of Ultron",        "https://lund2.nebula.to/01bda80507567c59553c58e70c30698796f7d776.mp4?md5=I_wrCn_g8sqR43kvsIwU6Q&expires=1780392465&fn=01bda80507567c59553c58e70c30698796f7d776.mp4", "aaou.png", "Action",  "A banger from Marvel studios, Age Of Ultron doesn't dissapoint!"],
-  ["The Devil Wears Prada",     "https://vidfast.pro/movie/350", "tdwp.png", "Comedy",  "If you are in the mood for a fashion-forward comedy, you should definitely watch!"],
-  ["Harry Potter and the Philosopher's Stone",             "https://vidfast.pro/movie/671", "hp1.png", "Fantasy",  "Harry Potter discovers he is not a human, rather a wizard who belongs in a magical place called Hogwarts"],
-  ["Harry Potter and the Chamber Of Secrets",             "https://herve2.nebula.to/22604f854920a2c6f70055fbb3526323c7da627e.mp4?md5=U8OUx6nveQpSvdow49me_g&expires=1780422477&fn=22604f854920a2c6f70055fbb3526323c7da627e.mp4", "hp2.png", "Fantasy",  "Harry Potter returns to Hogwarts for his second year, only to face a mysterious, ancient malice that is petrifying students."],
-  ["Harry Potter and the Prisoner Of Azkaban",         "https://vidfast.pro/movie/673", "hp3.png", "Fantasy",  "Harry Potter's life is in danger once more as dangerous wizard Sirius Black has escaped from Azkaban Prison and is heading to Hogwarts."],
-  ["Zootopia 1",                 "https://vidfast.pro/movie/269149", "zt1.png", "Animation",  "In a city of anthropomorphic animals, a rookie bunny cop and a cynical con artist fox must work together to uncover a conspiracy."],
-  ["Zootopia 2",            "https://vidfast.pro/movie/1084242", "zt2.png", "Animation",  "After cracking the biggest case in Zootopia's history, rookie cops Judy Hopps and Nick Wilde find themselves on the twisting trail of a great mystery."],
-  ["A Minecraft Movie",            "https://vidfast.pro/movie/950387", "amm.png", "Fantasy",     "Four misfits find themselves struggling with ordinary problems when they are suddenly pulled through a mysterious portal into the Overworld"],
-  ["Godzilla X Kong: The New Empire",          "https://vidfast.pro/movie/823464", "gxk.png", "Action",     "Following their explosive showdown, Godzilla and Kong must reunite against a colossal undiscovered threat hidden within our world."],
-  ["Statistics & Probability",        "PASTE_IFRAME_SRC_HERE", "", "Math",     "Mean, median, mode, probability trees and combined events."],
-  ["Comprehension Strategies",        "PASTE_IFRAME_SRC_HERE", "", "English",  "How to tackle Paper 2 unseen passages like a pro."],
-  ["Essay Writing Masterclass",       "PASTE_IFRAME_SRC_HERE", "", "English",  "Structure, killer introductions, solid body paragraphs and conclusions."],
-  ["Study Tips & Focus Hacks",        "PASTE_IFRAME_SRC_HERE", "", "Extra",    "Science-backed techniques to study smarter, not harder."],
-  ["Exam Stress Management",          "PASTE_IFRAME_SRC_HERE", "", "Extra",    "Calm your nerves and perform at your best before and during exams."],
+  ["Super Mario Bros Galaxy",   "https://luluvdo.com/e/866pywxfu1u6", "smbg.png", "Animation",  "The sequel to the original Mario movie brings even more joyous and tense moments.", 2026],
+  ["F1: The Movie",        "https://luluvdo.com/e/n890i1nwnqt2", "f1.png", "Thrill",  "A thrilling movie with a showcase of drivers and the racing industry", 2025],
+  ["Avengers: Age Of Ultron",        "https://lund2.nebula.to/01bda80507567c59553c58e70c30698796f7d776.mp4?md5=I_wrCn_g8sqR43kvsIwU6Q&expires=1780392465&fn=01bda80507567c59553c58e70c30698796f7d776.mp4", "aaou.png", "Action",  "A banger from Marvel studios, Age Of Ultron doesn't dissapoint!", 2015],
+  ["The Devil Wears Prada",     "https://vidfast.pro/movie/350", "tdwp.png", "Comedy",  "If you are in the mood for a fashion-forward comedy, you should definitely watch!", 2006],
+  ["Harry Potter and the Philosopher's Stone",             "https://vidfast.pro/movie/671", "hp1.png", "Fantasy",  "Harry Potter discovers he is not a human, rather a wizard who belongs in a magical place called Hogwarts", 2001],
+  ["Harry Potter and the Chamber Of Secrets",             "https://herve2.nebula.to/22604f854920a2c6f70055fbb3526323c7da627e.mp4?md5=U8OUx6nveQpSvdow49me_g&expires=1780422477&fn=22604f854920a2c6f70055fbb3526323c7da627e.mp4", "hp2.png", "Fantasy",  "Harry Potter returns to Hogwarts for his second year, only to face a mysterious, ancient malice that is petrifying students.", 2002],
+  ["Harry Potter and the Prisoner Of Azkaban",         "https://vidfast.pro/movie/673", "hp3.png", "Fantasy",  "Harry Potter's life is in danger once more as dangerous wizard Sirius Black has escaped from Azkaban Prison and is heading to Hogwarts.", 2004],
+  ["Zootopia 1",                 "https://vidfast.pro/movie/269149", "zt1.png", "Animation",  "In a city of anthropomorphic animals, a rookie bunny cop and a cynical con artist fox must work together to uncover a conspiracy.", 2016],
+  ["Zootopia 2",            "https://vidfast.pro/movie/1084242", "zt2.png", "Animation",  "After cracking the biggest case in Zootopia's history, rookie cops Judy Hopps and Nick Wilde find themselves on the twisting trail of a great mystery.", 2025],
+  ["A Minecraft Movie",            "https://vidfast.pro/movie/950387", "amm.png", "Fantasy",     "Four misfits find themselves struggling with ordinary problems when they are suddenly pulled through a mysterious portal into the Overworld", 2025],
+  ["Godzilla X Kong: The New Empire",          "https://vidfast.pro/movie/823464", "gxk.png", "Action",     "Following their explosive showdown, Godzilla and Kong must reunite against a colossal undiscovered threat hidden within our world.", 2024],
+  ["Tennis+",        "PASTE_IFRAME_SRC_HERE", "tennis.png", "Tennis",     "Tennis+ stream powered by Heartrive", 0000],
+  ["Comprehension Strategies",        "PASTE_IFRAME_SRC_HERE", "", "English",  "How to tackle Paper 2 unseen passages like a pro.", 2024],
+  ["Essay Writing Masterclass",       "PASTE_IFRAME_SRC_HERE", "", "English",  "Structure, killer introductions, solid body paragraphs and conclusions.", 2024],
+  ["Study Tips & Focus Hacks",        "PASTE_IFRAME_SRC_HERE", "", "Extra",    "Science-backed techniques to study smarter, not harder.", 2024],
+  ["Exam Stress Management",          "PASTE_IFRAME_SRC_HERE", "", "Extra",    "Calm your nerves and perform at your best before and during exams.", 2024],
 ];
 
-const CATS = ['All', 'Action', 'Fantasy', 'Anime', 'Animation', 'Thrill', 'Comedy'];
+const CATS        = ['All', 'Action', 'Fantasy', 'Anime', 'Animation', 'Thrill', 'Comedy'];
+const SPORTS_CATS = ['All', 'Football', 'Basketball', 'Tennis'];
+let currentTab    = 'videos';
 const THEMES = ['default','cyberpunk','matrix','crimson','abyss','vaporwave','gold'];
 
 // ─────────────────────────────────────────────
@@ -566,28 +600,41 @@ function updateBreadcrumb(videoTitle, custom) {
 // CATEGORY PILLS
 // ─────────────────────────────────────────────
 const pillsEl = document.getElementById('cat-pills');
-CATS.forEach(cat => {
-  const btn = document.createElement('button');
-  btn.className = 'cat-pill' + (cat === 'All' ? ' active' : '');
-  btn.dataset.cat = cat;
-  btn.textContent = cat;
-  btn.addEventListener('click', () => {
-    currentCat = cat;
-    document.querySelectorAll('.cat-pill').forEach(p => p.classList.toggle('active', p.dataset.cat === cat));
-    filterAndRender();
+
+function buildPills() {
+  pillsEl.innerHTML = '';
+  const cats = currentTab === 'sports' ? SPORTS_CATS : CATS;
+  currentCat = 'All';
+  cats.forEach(cat => {
+    const btn = document.createElement('button');
+    btn.className = 'cat-pill' + (cat === 'All' ? ' active' : '');
+    btn.dataset.cat = cat;
+    btn.textContent = cat;
+    btn.addEventListener('click', () => {
+      currentCat = cat;
+      document.querySelectorAll('.cat-pill').forEach(p => p.classList.toggle('active', p.dataset.cat === cat));
+      filterAndRender();
+    });
+    pillsEl.appendChild(btn);
   });
-  pillsEl.appendChild(btn);
-});
+}
+
+buildPills();
 
 // ─────────────────────────────────────────────
 // RENDER LIST
 // ─────────────────────────────────────────────
 function filterAndRender() {
   const q = currentSearch.toLowerCase();
-  const list = VIDEOS.filter(([title,,, cat]) =>
-    (currentCat === 'All' || cat === currentCat) &&
-    (!q || title.toLowerCase().includes(q))
-  );
+  const sportsCats = ['Football', 'Basketball', 'Tennis'];
+  const list = VIDEOS.filter(([title,,, cat]) => {
+    // scope to correct tab
+    const inSports = sportsCats.includes(cat);
+    if (currentTab === 'sports' && !inSports) return false;
+    if (currentTab === 'videos' && inSports) return false;
+    return (currentCat === 'All' || cat === currentCat) &&
+           (!q || title.toLowerCase().includes(q));
+  });
   renderList(list);
 }
 
@@ -606,7 +653,7 @@ function renderList(list) {
   el.style.display='flex';
 
   list.forEach((video, idx) => {
-    const [title, url, poster, category, desc] = video;
+    const [title, url, poster, category, desc, year] = video;
     const row = document.createElement('div');
     row.className = 'video-row';
     row.style.animationDelay = (idx * 0.04) + 's';
@@ -625,7 +672,7 @@ function renderList(list) {
       </div>
       <div style="flex:1;padding:16px 20px;display:flex;flex-direction:column;justify-content:space-between;min-width:0;">
         <div>
-          <span style="font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;background:rgb(var(--accent)/.08);border:1px solid rgb(var(--accent)/.2);border-radius:999px;color:rgb(var(--accent));margin-bottom:8px;display:inline-block;">${category}</span>
+          <span style="font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;background:rgb(var(--accent)/.08);border:1px solid rgb(var(--accent)/.2);border-radius:999px;color:rgb(var(--accent));margin-bottom:8px;display:inline-block;">${category}</span>${year ? ` <span style="font-size:10px;font-weight:700;letter-spacing:.06em;padding:3px 10px;background:rgb(var(--text)/.06);border:1px solid rgb(var(--text)/.12);border-radius:999px;color:rgb(var(--muted));display:inline-block;">${year}</span>` : ''}
           <h3 style="font-size:15px;font-weight:700;color:rgb(var(--text));margin:0 0 6px;line-height:1.3;">${title}</h3>
           <p style="font-size:12px;color:rgb(var(--muted));margin:0;line-height:1.6;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">${desc}</p>
         </div>
@@ -798,8 +845,40 @@ window.addEventListener('resize', handleResize);
 handleResize();
 
 // ─────────────────────────────────────────────
-// ENTER SYSTEM
+// SIDEBAR TABS
 // ─────────────────────────────────────────────
+function switchSidebarTab(tab) {
+  currentTab = tab;
+  const videosPanel = document.getElementById('sidebar-panel-videos');
+  const sportsPanel = document.getElementById('sidebar-panel-sports');
+  const tabVideos = document.getElementById('tab-videos');
+  const tabSports = document.getElementById('tab-sports');
+
+  if (tab === 'videos') {
+    videosPanel.style.display = '';
+    sportsPanel.style.display = 'none';
+    tabVideos.style.background = 'rgb(var(--accent)/.15)';
+    tabVideos.style.borderColor = 'rgb(var(--accent)/.4)';
+    tabVideos.style.color = 'rgb(var(--accent))';
+    tabSports.style.background = 'transparent';
+    tabSports.style.borderColor = 'rgb(var(--text)/.1)';
+    tabSports.style.color = 'rgb(var(--muted))';
+  } else {
+    videosPanel.style.display = 'none';
+    sportsPanel.style.display = '';
+    tabSports.style.background = 'rgb(var(--accent)/.15)';
+    tabSports.style.borderColor = 'rgb(var(--accent)/.4)';
+    tabSports.style.color = 'rgb(var(--accent))';
+    tabVideos.style.background = 'transparent';
+    tabVideos.style.borderColor = 'rgb(var(--text)/.1)';
+    tabVideos.style.color = 'rgb(var(--muted))';
+  }
+  buildPills();
+  showBrowse();
+  filterAndRender();
+  lucide.createIcons();
+}
+
 // ─────────────────────────────────────────────
 // INIT
 // ─────────────────────────────────────────────
