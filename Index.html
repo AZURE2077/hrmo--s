@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>HR — Video Library</title>
+  <title>HR - Video Library</title>
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Press+Start+2P&display=swap" rel="stylesheet">
@@ -159,12 +159,17 @@
         </div>
 
         <!-- Tab switcher -->
-        <div style="padding:0 16px 8px;display:flex;gap:6px;">
-          <button id="tab-videos" onclick="switchSidebarTab('videos')" style="flex:1;padding:9px 6px;border-radius:10px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;transition:all .2s;border:1px solid rgb(var(--accent)/.4);background:rgb(var(--accent)/.15);color:rgb(var(--accent));display:flex;align-items:center;justify-content:center;gap:6px;">
-            <i data-lucide="play-circle" style="width:14px;height:14px;"></i> Videos
-          </button>
-          <button id="tab-sports" onclick="switchSidebarTab('sports')" style="flex:1;padding:9px 6px;border-radius:10px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;transition:all .2s;border:1px solid rgb(var(--text)/.1);background:transparent;color:rgb(var(--muted));display:flex;align-items:center;justify-content:center;gap:6px;">
-            <i data-lucide="trophy" style="width:14px;height:14px;"></i> Sports
+        <div style="padding:0 16px 8px;display:flex;flex-direction:column;gap:6px;">
+          <div style="display:flex;gap:6px;">
+            <button id="tab-videos" onclick="switchSidebarTab('videos')" style="flex:1;padding:9px 6px;border-radius:10px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;transition:all .2s;border:1px solid rgb(var(--accent)/.4);background:rgb(var(--accent)/.15);color:rgb(var(--accent));display:flex;align-items:center;justify-content:center;gap:6px;">
+              <i data-lucide="play-circle" style="width:14px;height:14px;"></i> Videos
+            </button>
+            <button id="tab-sports" onclick="switchSidebarTab('sports')" style="flex:1;padding:9px 6px;border-radius:10px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;transition:all .2s;border:1px solid rgb(var(--text)/.1);background:transparent;color:rgb(var(--muted));display:flex;align-items:center;justify-content:center;gap:6px;">
+              <i data-lucide="trophy" style="width:14px;height:14px;"></i> Sports
+            </button>
+          </div>
+          <button id="tab-channels" onclick="switchSidebarTab('channels')" style="width:100%;padding:9px 6px;border-radius:10px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;transition:all .2s;border:1px solid rgb(var(--text)/.1);background:transparent;color:rgb(var(--muted));display:flex;align-items:center;justify-content:center;gap:6px;">
+            <i data-lucide="tv-2" style="width:14px;height:14px;"></i> Live Channels
           </button>
         </div>
 
@@ -195,10 +200,25 @@
             <button class="nav-btn nav-btn-idle" data-view="browse" data-cat="Comedy" style="width:100%;display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:12px;font-size:13px;font-weight:600;border:1px solid;cursor:pointer;transition:all .2s;text-align:left;">
               <i data-lucide="star" style="width:18px;height:18px;"></i> Comedy
             </button>
+            <button class="nav-btn nav-btn-idle" data-view="browse" data-cat="Series" style="width:100%;display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:12px;font-size:13px;font-weight:600;border:1px solid;cursor:pointer;transition:all .2s;text-align:left;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="15" rx="2"/><polyline points="17 2 12 7 7 2"/></svg> Series
+            </button>
             <div style="margin-top:24px;font-size:10px;font-weight:700;color:rgb(var(--muted));padding:0 16px;margin-bottom:6px;letter-spacing:.1em;text-transform:uppercase;">System</div>
             <button class="nav-btn nav-btn-idle" data-view="settings" style="width:100%;display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:12px;font-size:13px;font-weight:600;border:1px solid;cursor:pointer;transition:all .2s;text-align:left;">
               <i data-lucide="settings" style="width:18px;height:18px;"></i> Settings
             </button>
+          </div>
+
+          <!-- Channels panel -->
+          <div id="sidebar-panel-channels" style="display:none;">
+            <div style="font-size:10px;font-weight:700;color:rgb(var(--muted));padding:0 16px;margin-bottom:6px;letter-spacing:.1em;text-transform:uppercase;">Live Channels</div>
+            <div style="font-size:12px;color:rgb(var(--muted));padding:8px 16px;line-height:1.6;">No channels yet. Add some to get started.</div>
+          </div>
+
+          <!-- Series panel -->
+          <div id="sidebar-panel-series" style="display:none;">
+            <div style="font-size:10px;font-weight:700;color:rgb(var(--muted));padding:0 16px;margin-bottom:6px;letter-spacing:.1em;text-transform:uppercase;">Series</div>
+            <div style="font-size:12px;color:rgb(var(--muted));padding:8px 16px;line-height:1.6;">Browse all available series below.</div>
           </div>
 
           <!-- Sports panel -->
@@ -210,8 +230,8 @@
             <button class="nav-btn nav-btn-idle" data-view="browse" data-cat="Basketball" style="width:100%;display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:12px;font-size:13px;font-weight:600;border:1px solid;cursor:pointer;transition:all .2s;text-align:left;">
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M4.93 4.93a15 15 0 0 1 14.14 14.14M4.93 19.07A15 15 0 0 1 19.07 4.93"/><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/></svg> Basketball
             </button>
-            <button class="nav-btn nav-btn-idle" data-view="browse" data-cat="Tennis" style="width:100%;display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:12px;font-size:13px;font-weight:600;border:1px solid;cursor:pointer;transition:all .2s;text-align:left;">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M6.4 6.4a8 8 0 0 0 0 11.2M17.6 6.4a8 8 0 0 1 0 11.2"/></svg> Tennis
+            <button class="nav-btn nav-btn-idle" data-view="browse" data-cat="Motorsports" style="width:100%;display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:12px;font-size:13px;font-weight:600;border:1px solid;cursor:pointer;transition:all .2s;text-align:left;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg> Motorsports
             </button>
             <div style="margin-top:24px;font-size:10px;font-weight:700;color:rgb(var(--muted));padding:0 16px;margin-bottom:6px;letter-spacing:.1em;text-transform:uppercase;">System</div>
             <button class="nav-btn nav-btn-idle" data-view="settings" style="width:100%;display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:12px;font-size:13px;font-weight:600;border:1px solid;cursor:pointer;transition:all .2s;text-align:left;">
@@ -452,24 +472,136 @@ const VIDEOS = [
   ["Zootopia 2",            "https://vidfast.pro/movie/1084242", "zt2.png", "Animation",  "After cracking the biggest case in Zootopia's history, rookie cops Judy Hopps and Nick Wilde find themselves on the twisting trail of a great mystery.", 2025],
   ["A Minecraft Movie",            "https://vidfast.pro/movie/950387", "amm.png", "Fantasy",     "Four misfits find themselves struggling with ordinary problems when they are suddenly pulled through a mysterious portal into the Overworld", 2025],
   ["Godzilla X Kong: The New Empire",          "https://vidfast.pro/movie/823464", "gxk.png", "Action",     "Following their explosive showdown, Godzilla and Kong must reunite against a colossal undiscovered threat hidden within our world.", 2024],
-  ["Tennis+",        "https://amg01935-amg01935c1-amgplt0165.playout.now3.amagi.tv/1080p-cc/index.m3u8", "tennis.png", "Tennis",     "Tennis+ stream powered by Heartrive", 0000],
-  ["Fifa+",        "https://ba3e2e93.wurl.com/master/f36d25e7e52f1ba8d7e56eb859c636563214f541/U2Ftc3VuZy1nYl9GSUZBUGx1c0VuZ2xpc2hfSExT/playlist.m3u8", "fifa.png", "Football",  "Fifa+ stream powered by iptv-org", 2024],
+  ["Tennis+",        "https://amg01935-amg01935c1-amgplt0165.playout.now3.amagi.tv/1080p-cc/index.m3u8", "tennis.png", "channels",     "Tennis+ stream powered by Heartrive", 0000],
+  ["Fifa+",        "https://ba3e2e93.wurl.com/master/f36d25e7e52f1ba8d7e56eb859c636563214f541/U2Ftc3VuZy1nYl9GSUZBUGx1c0VuZ2xpc2hfSExT/playlist.m3u8", "fifa.png", "channels",  "Fifa+ stream powered by iptv-org", 0000],
   ["Jurrasic World Rebirth",       "https://vidfast.pro/movie/1234821", "jwr.png", "Fantasy",  "Five years after the events of Jurassic World Dominion, covert operations expert Zora Bennett is contracted to lead a skilled team on a top-secret mission to secure genetic material from the world's three most massive dinosaurs.", 2025],
   ["Spider Man: No Way Home",        "https://vidfast.pro/movie/634649", "nwh.png", "Action",    "Someone said no more home, I guess...", 2021],
   ["The Incredibles(1)",          "https://vidfast.pro/movie/9806", "ti1.png", "Animation",    "Set in a world where superheroes are forced into suburban retirement by public lawsuits, Pixar's The Incredibles follows the Parr family.", 2004],
 ["How To Train Your Dragon",          "https://vidfast.pro/movie/1087192", "dragon.png", "Fantasy",    "On the rugged isle of Berk, where Vikings and dragons have been bitter enemies for generations, Hiccup stands apart.", 2025],
 ["The Incredibles(2)",          "https://vidfast.pro/movie/260513", "ti2.png", "Animation",    "Elastigirl springs into action to save the day, while Mr. Incredible faces his greatest challenge yet – taking care of the problems of his three children.", 2018],
 ["Big Hero 6",          "https://vidfast.pro/movie/177572", "bh6.png", "Animation",    "A special bond develops between plus-sized inflatable robot Baymax, and prodigy Hiro Hamada...", 2014],
-["Grand Turismo",          "https://vidfast.pro/movie/980489", "gt.png", "Action",    "The ultimate wish-fulfillment tale of a teenage Gran Turismo player whose gaming skills won him a series of Nissan competitions to become an actual professional racecar driver.", 2023],
-["Need For Speed",          "https://vidfast.pro/movie/136797", "nfs.png", "Action",    "The film revolves around a local street-racer who partners with a rich and arrogant business associate.", 2014],
-["Important Notice For Live Sports",          "message.html", "u.png", "Football",    "Please Read Carefully", 0000],
+["Grand Turismo",          "https://vidfast.pro/movie/980489", "gt.png", "Thrill",    "The ultimate wish-fulfillment tale of a teenage Gran Turismo player whose gaming skills won him a series of Nissan competitions to become an actual professional racecar driver.", 2023],
+["Need For Speed",          "https://vidfast.pro/movie/136797", "nfs.png", "Thrill",    "The film revolves around a local street-racer who partners with a rich and arrogant business associate.", 2014],
+["Important Notice For Live Sports",          "message.html", "plsread.png", "Football",    "Please Read Carefully", 0000],
+["CNA",          "https://d2e1asnsl7br7b.cloudfront.net/7782e205e72f43aeb4a48ec97f66ebbe/index.m3u8", "cna.png", "channels",    "Channel News Asia Singapore shows live and updated news from Asia to the world", 0000],
+["Mythbusters",          "https://amg00627-amg00627c14-rakuten-uk-4802.playouts.now.amagi.tv/index.m3u8", "mb.png", "channels",    "An exiciting channel that tests and experiments with myths and facts", 0000],
+["Redbull TV",          "https://e7c8f7d5.wurl.com/master/f36d25e7e52f1ba8d7e56eb859c636563214f541/UmFrdXRlblRWLWdiX1JlZEJ1bGxUVi0xX0hMUw/playlist.m3u8", "rb.png", "channels",    "Redbull, the channel that gives you wings :)", 0000],
+["NASCAR",          "https://aegis-cloudfront-1.tubi.video/a8586229-0ea0-4eb4-bb23-09674c2a94d3/playlist.m3u8", "nc.png", "channels",    "Watch NASCAR Classics and live races on this channel!", 0000],
+["beIN Sports",          "https://aegis-cloudfront-1.tubi.video/651ee7d3-e75b-4748-be86-422d43ff24b6/playlist.m3u8", "bs.png", "channels",    "Watch a variety of sports ranging from WWE to even Football", 0000],
+["Mr Beast Channel",          "https://aegis-cloudfront-1.tubi.video/cf8b86e9-932a-4454-99c5-32169b6a330f/playlist.m3u8", "mrb.png", "channels",    "Mr Beast gimme some money im broge", 0000],
+["America's Got Talent",          "https://d1i40wgstaij6f.cloudfront.net/webvtt/v1/18584c3f3a2a4df8/88886062/master.m3u8", "agt.png", "channels",    "The Most talented teams/individuals in America fight to get to the top of this contest and win the glory", 0000],
+["America's Got Talent",          "https://d1i40wgstaij6f.cloudfront.net/webvtt/v1/18584c3f3a2a4df8/88886062/master.m3u8", "agt.png", "channels",    "The Most talented teams/individuals in America fight to get to the top of this contest and win the glory", 0000],
+
 ];
 
 
 
 
-const CATS        = ['All', 'Action', 'Fantasy', 'Anime', 'Animation', 'Thrill', 'Comedy'];
-const SPORTS_CATS = ['All', 'Football', 'Basketball', 'Tennis'];
+const CATS        = ['All', 'Action', 'Fantasy', 'Anime', 'Animation', 'Thrill', 'Comedy', 'Series'];
+
+// ─────────────────────────────────────────────
+// SERIES DATA
+// Each series: { id, title, poster, desc, cats, year, episodes: [{title, url, desc}] }
+// ─────────────────────────────────────────────
+const SERIES = [
+  {
+id: 'op',
+    title: 'One Piece S1',
+    poster: 'op.png',
+    desc: 'Monkey D. Luffy and his pirate crew explore a fantastical world of endless oceans and exotic islands in search of the world\'s ultimate treasure to become the next Pirate King.',
+    cats: ['Anime', 'Series'],
+    year: 2023,
+    episodes: [
+      { title: "01: Romance Dawn",  url: 'https://vidfast.pro/tv/111110/1/1',  desc: "Stranded on a sinking boat, carefree Luffy begins his journey in search of a pirate king's lost treasure. But first, he'll need a crew, a ship and a map." },
+      { title: "02: The Man In The Straw Hat",   url: 'https://vidfast.pro/tv/111110/1/2', desc: "After securing a map to the Grand Line, Luffy, Nami and Zoro are taken hostage by a no-nonsense clown. New cadet Koby is cornered by Vice-Admiral Garp." },
+      { title: "03: Tell No Tales",  url: 'https://vidfast.pro/tv/111110/1/3',  desc: "In need of a proper ship, the gang reaches Syrup Village and meets the cheerful Usopp and his best friend Kaya. A sinister threat disrupts their plans." },
+      { title: "04: The Pirates Are Coming",  url: 'https://vidfast.pro/tv/111110/1/4',  desc: "Usopp's lies become reality as Black Cat pirates invade Syrup Village. Luffy and the crew must protect Kaya while Usopp faces the truth about his father." },
+      { title: "05: Eat At Baratie!",  url: 'https://vidfast.pro/tv/111110/1/5',  desc: "The crew arrives at the floating sea restaurant Baratie, where they meet the hot-headed cook Sanji - and attract the attention of a powerful pirate fleet." },
+      { title: "06: The Chef And The Chore Boy",  url: 'https://vidfast.pro/tv/111110/1/6',  desc: "Sanji's past with the Baratie is revealed as Luffy struggles to recruit him. Meanwhile, a warlord's shadow looms over the restaurant and its people." },
+      { title: "07: The Girl With The Sawfish Tattoo",  url: 'https://vidfast.pro/tv/111110/1/7',  desc: "Nami's true loyalties and tragic backstory are uncovered as the crew follows her to her hometown of Cocoyasi Village, held captive by the fishman Arlong." },
+      { title: "08: Worst In The East",  url: 'https://vidfast.pro/tv/111110/1/8',  desc: "The crew rallies for a final showdown against Arlong and his crew. Luffy makes a promise to Nami and proves why he's destined to be King of the Pirates." },
+    
+    ]
+  },
+  {
+    id: 'op2',
+    title: 'One Piece S2',
+    poster: 'op2.png',
+    desc: 'The Straw Hat crew sails into the treacherous Grand Line, facing new enemies, powerful warlords, and the mysteries of Alabasta in their continued quest to find the One Piece.',
+    cats: ['Anime', 'Series'],
+    year: 2025,
+    episodes: [
+      { title: "01: Alabasta",  url: '',  desc: "The Straw Hats finally arrive in the kingdom of Alabasta, greeted by Princess Vivi's homeland - but the kingdom is on the brink of a civil war engineered by a mysterious warlord." },
+      { title: "02: Rainbase",  url: '',  desc: "Following a lead, the crew ventures into the desert city of Rainbase to confront the warlord Crocodile, only to fall into a deadly trap with no obvious way out." },
+      { title: "03: The Desert Princess",  url: '',  desc: "Vivi reveals the full extent of Crocodile's plan to destroy Alabasta from within. The crew races across the scorching desert to warn the kingdom before it's too late." },
+      { title: "04: Baroque Works",  url: '',  desc: "The inner workings of Crocodile's shadowy organisation are exposed. The Straw Hats face off against elite agents as they push deeper into enemy territory." },
+      { title: "05: The Battle Of Alubarna",  url: '',  desc: "War erupts in the streets of Alubarna. Each Straw Hat takes on a Baroque Works officer in a series of fierce battles while Vivi desperately tries to stop the bloodshed." },
+      { title: "06: Crocodile",  url: '',  desc: "Luffy faces Crocodile in a brutal one-on-one showdown beneath the sands of Alabasta. Outmatched and outclassed, Luffy must find a way to land a hit on a man made of sand." },
+      { title: "07: Vivi's Plea",  url: '',  desc: "With the clock ticking on a bomb that could level the city, Vivi makes a desperate choice between her country and her crew. Luffy refuses to let her face it alone." },
+      { title: "08: The Kingdom's Dawn",  url: '',  desc: "Alabasta is saved, but at a cost. As the crew prepares to sail on, Vivi must make a heartbreaking decision about her future - and whether she belongs with the Straw Hats." },
+    ]
+  },
+
+  {
+    id: 'rookie-s6',
+    title: 'The Rookie - Season 6',
+    poster: 'rookie6.png',
+    desc: 'Officer John Nolan navigates the challenges of life in the LAPD as the oldest rookie on the force, facing new threats, personal trials, and the ever-unpredictable streets of Los Angeles.',
+    cats: ['Action', 'Series'],
+    year: 2024,
+    episodes: [
+      { title: "01: Strike Back",          url: 'https://vidfast.pro/tv/79744/6/1', desc: "Nolan and the team return to duty following a dramatic standoff, but a new organised threat quickly puts everyone on edge." },
+      { title: "02: The Hammer",           url: 'https://vidfast.pro/tv/79744/6/2', desc: "A high-profile case lands on the team's desk, forcing Nolan to make a difficult call that tests his loyalty to the badge." },
+      { title: "03: Daddy Dearest",        url: 'https://vidfast.pro/tv/79744/6/3', desc: "Family complications arise for multiple officers as a missing persons case takes a dark and unexpected turn." },
+      { title: "04: The Deal",             url: 'https://vidfast.pro/tv/79744/6/4', desc: "A shady plea deal sparks tension within the precinct while Nolan goes undercover to expose a dangerous criminal network." },
+      { title: "05: The Vow",              url: 'https://vidfast.pro/tv/79744/6/5', desc: "Relationships are pushed to their limits as a series of escalating crimes threatens to tear the team apart." },
+      { title: "06: New Blood",            url: 'https://vidfast.pro/tv/79744/6/6', desc: "A fresh wave of rookies arrives at the precinct, and Nolan must balance mentoring duties with a case that hits uncomfortably close to home." },
+      { title: "07: The Trap",             url: 'https://vidfast.pro/tv/79744/6/7', desc: "The team is lured into a carefully laid trap by a cunning adversary, forcing them to improvise to stay alive." },
+      { title: "08: Boys in Blue",         url: 'https://vidfast.pro/tv/79744/6/8', desc: "Nolan and his partner investigate corruption allegations that reach higher up the chain of command than anyone expected." },
+      { title: "09: Secret Life",          url: 'https://vidfast.pro/tv/79744/6/9', desc: "A seemingly ordinary arrest unravels into a web of secrets, double lives, and a conspiracy that goes back years." },
+      { title: "10: End Game",             url: 'https://vidfast.pro/tv/79744/6/10', desc: "The season's central threat reaches its boiling point as the team races to prevent a catastrophic event from unfolding across the city." },
+    ]
+  },
+  {
+    id: 'rookie-s7',
+    title: 'The Rookie - Season 7',
+    poster: 'rookie7.png',
+    desc: 'John Nolan is no longer the new guy - but the stakes have never been higher as the LAPD faces its most dangerous year yet, with threats that blur the line between duty and survival.',
+    cats: ['Action', 'Series'],
+    year: 2025,
+    episodes: [
+      { title: "01: New Flame",            url: 'https://vidfast.pro/tv/79744/7/1', desc: "Season 7 opens with Nolan adjusting to a new chapter in his personal life while a chilling series of crimes signals a ruthless new player in the city." },
+      { title: "02: The Squeeze",          url: 'https://vidfast.pro/tv/79744/7/2', desc: "Pressure mounts on the precinct from both above and below as a turf war between rival gangs threatens to explode into open conflict." },
+      { title: "03: Lone Wolf",            url: 'https://vidfast.pro/tv/79744/7/3', desc: "A suspect operating entirely off the grid leads Nolan on a cat-and-mouse chase through parts of LA few officers ever see." },
+      { title: "04: Legacy",               url: 'https://vidfast.pro/tv/79744/7/4', desc: "A case tied to a legendary unsolved crime forces the team to dig into LAPD history - and confront some uncomfortable truths." },
+      { title: "05: The Reckoning",        url: 'https://vidfast.pro/tv/79744/7/5', desc: "Past actions catch up with members of the team as a revenge plot puts multiple lives in immediate danger." },
+      { title: "06: Deep Cover",           url: 'https://vidfast.pro/tv/79744/7/6', desc: "Nolan goes deep undercover in one of the most dangerous assignments of his career, with no guarantee of a clean exit." },
+      { title: "07: Hard Line",            url: 'https://vidfast.pro/tv/79744/7/7', desc: "A hostage situation with an unusual twist demands that the team negotiate under extreme pressure with very little room for error." },
+      { title: "08: Blood and Badges",     url: 'https://vidfast.pro/tv/79744/7/8', desc: "Loyalty is tested when evidence surfaces implicating someone close to the team in a serious crime." },
+      { title: "09: Crossroads",           url: 'https://vidfast.pro/tv/79744/7/9', desc: "Each member of the team faces a pivotal personal decision as the season's overarching threat moves into its final phase." },
+      { title: "10: The Long Game",        url: 'https://vidfast.pro/tv/79744/7/10', desc: "An explosive season finale that brings together every thread from the year - with life-changing consequences for the entire squad." },
+    ]
+  },
+  {
+    id: 'young-sheldon',
+    title: 'Young Sheldon S1',
+    poster: 'ysheldon.png',
+    desc: 'Follow the early life of Sheldon Cooper - a child prodigy growing up in 1980s East Texas - as he navigates family, school, faith, and a world that struggles to keep up with his genius.',
+    cats: ['Comedy', 'Series'],
+    year: 2017,
+    episodes: [
+      { title: "01: Pilot - Rockets, Communists and the Dewey Decimal System", url: 'https://vidfast.pro/tv/71728/1/1', desc: "Nine-year-old Sheldon Cooper begins high school in Medford, Texas, immediately alienating classmates and teachers alike with his superior intellect and blunt honesty." },
+      { title: "02: A Brisket, Complication and a Leftover Biscuit",           url: 'https://vidfast.pro/tv/71728/1/2', desc: "Sheldon accidentally causes a rift between his father and Meemaw over a brisket recipe, proving that even small social missteps can have enormous consequences." },
+      { title: "03: Poker, Faith and Eggs",                                    url: 'https://vidfast.pro/tv/71728/1/3', desc: "When George Sr. is rushed to hospital, the Cooper family is shaken to its core - while Sheldon and Georgie are left home alone with predictably chaotic results." },
+      { title: "04: A Therapist, a Comic Book and a Breakfast Sausage",        url: 'https://vidfast.pro/tv/71728/1/4', desc: "Mary sends Sheldon to a therapist, convinced something is wrong with him. Sheldon is convinced the therapist is the one who needs help." },
+      { title: "05: A Solar Calculator, a Game Ball and a Cheerleader's Bosom", url: 'https://vidfast.pro/tv/71728/1/5', desc: "Sheldon attempts to join the football team's support staff to gain access to better facilities, leading to an unlikely alliance with his jock brother." },
+      { title: "06: A Patch, a Modem and a Zantac",                            url: 'https://vidfast.pro/tv/71728/1/6', desc: "Sheldon discovers the internet for the first time and becomes obsessed, while Mary worries about what he might be learning unsupervised." },
+      { title: "07: A Nobel Prize and a Family Reunion",                       url: 'https://vidfast.pro/tv/71728/1/7', desc: "A visit from extended family forces Sheldon to endure small talk, loud relatives and the realization that intelligence is not always appreciated at the dinner table." },
+      { title: "08: Cape Canaveral, Schrödinger's Cat and Cyndi Lauper's Hair", url: 'https://vidfast.pro/tv/71728/1/8', desc: "Sheldon's obsession with space leads to a trip he has dreamed of, but the reality of travelling with his family threatens to overshadow the whole experience." },
+    ]
+  },
+];
+const SPORTS_CATS = ['All', 'Football', 'Basketball', 'Motorsports'];
 let currentTab    = 'videos';
 const THEMES = ['default','cyberpunk','matrix','crimson','abyss','vaporwave','gold'];
 
@@ -550,8 +682,13 @@ document.querySelectorAll('.nav-btn').forEach(btn => {
       showSettings();
     } else {
       currentCat = btn.getAttribute('data-cat') || 'All';
-      // Update pills
-      document.querySelectorAll('.cat-pill').forEach(p => p.classList.toggle('active', p.dataset.cat === currentCat));
+      // Update pills (hide if Series)
+      if (currentCat === 'Series') {
+        pillsEl.style.display = 'none';
+      } else {
+        pillsEl.style.display = 'flex';
+        document.querySelectorAll('.cat-pill').forEach(p => p.classList.toggle('active', p.dataset.cat === currentCat));
+      }
       showBrowse();
       filterAndRender();
     }
@@ -612,6 +749,11 @@ const pillsEl = document.getElementById('cat-pills');
 
 function buildPills() {
   pillsEl.innerHTML = '';
+  if (currentTab === 'channels') {
+    pillsEl.style.display = 'none';
+    return;
+  }
+  pillsEl.style.display = 'flex';
   const cats = currentTab === 'sports' ? SPORTS_CATS : CATS;
   currentCat = 'All';
   cats.forEach(cat => {
@@ -633,15 +775,35 @@ buildPills();
 // ─────────────────────────────────────────────
 // RENDER LIST
 // ─────────────────────────────────────────────
+function videoHasCat(cat, targetCat) {
+  // cat can be a string or array of strings
+  const cats = Array.isArray(cat) ? cat : [cat];
+  return cats.some(c => c.toLowerCase() === targetCat.toLowerCase());
+}
+
 function filterAndRender() {
   const q = currentSearch.toLowerCase();
-  const sportsCats = ['Football', 'Basketball', 'Tennis'];
+  const sportsCats = ['Football', 'Basketball', 'Motorsports'];
+
+  // Series tab (via sidebar cat): show series cards
+  if (currentCat === 'Series') {
+    const list = SERIES.filter(s =>
+      !q || s.title.toLowerCase().includes(q)
+    );
+    renderSeriesList(list);
+    return;
+  }
+
   const list = VIDEOS.filter(([title,,, cat]) => {
-    // scope to correct tab
-    const inSports = sportsCats.includes(cat);
+    const cats = Array.isArray(cat) ? cat : [cat];
+    const inSports   = cats.some(c => sportsCats.includes(c));
+    const inChannels = cats.some(c => c === 'channels');
+    const inSeries   = cats.some(c => c === 'Series');
+    if (currentTab === 'channels' && !inChannels) return false;
+    if (currentTab !== 'channels' && inChannels) return false;
     if (currentTab === 'sports' && !inSports) return false;
-    if (currentTab === 'videos' && inSports) return false;
-    return (currentCat === 'All' || cat === currentCat) &&
+    if (currentTab === 'videos' && (inSports || inSeries)) return false;
+    return (currentCat === 'All' || cats.some(c => c === currentCat)) &&
            (!q || title.toLowerCase().includes(q));
   });
   renderList(list);
@@ -662,7 +824,8 @@ function renderList(list) {
   el.style.display='flex';
 
   list.forEach((video, idx) => {
-    const [title, url, poster, category, desc, year] = video;
+    const [title, url, poster, _cat, desc, year] = video;
+    const category = Array.isArray(_cat) ? _cat[0] : _cat;
     const row = document.createElement('div');
     row.className = 'video-row';
     row.style.animationDelay = (idx * 0.04) + 's';
@@ -699,9 +862,146 @@ function renderList(list) {
 }
 
 // ─────────────────────────────────────────────
+// SERIES LIST
+// ─────────────────────────────────────────────
+function renderSeriesList(list) {
+  const el = document.getElementById('video-list');
+  const empty = document.getElementById('empty-state');
+  el.innerHTML = '';
+
+  if (!list.length) {
+    el.style.display = 'none';
+    empty.classList.remove('hidden-view'); empty.style.display = 'flex';
+    lucide.createIcons(); return;
+  }
+  empty.classList.add('hidden-view');
+  el.style.display = 'flex';
+
+  list.forEach((series, idx) => {
+    const row = document.createElement('div');
+    row.className = 'video-row fade-in';
+    row.style.animationDelay = (idx * 0.04) + 's';
+    row.innerHTML = `
+      <div class="thumb-wrap">
+        <img src="${series.poster}" alt="${series.title}" loading="lazy"
+          onerror="this.outerHTML='<div style=\'width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:rgb(var(--alt));font-family:Press Start 2P,cursive;font-size:22px;color:rgb(var(--accent)/.3)\'>${series.title.charAt(0)}</div>'"
+        />
+        <div class="play-over">
+          <div style="width:48px;height:48px;background:rgb(var(--accent)/.2);backdrop-filter:blur(8px);border-radius:50%;display:flex;align-items:center;justify-content:center;border:1px solid rgb(var(--accent)/.4);">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgb(var(--text))" stroke-width="2"><rect x="2" y="7" width="20" height="15" rx="2"/><polyline points="17 2 12 7 7 2"/></svg>
+          </div>
+        </div>
+      </div>
+      <div style="flex:1;padding:16px 20px;display:flex;flex-direction:column;justify-content:space-between;min-width:0;">
+        <div>
+          <span style="font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;background:rgb(var(--accent)/.08);border:1px solid rgb(var(--accent)/.2);border-radius:999px;color:rgb(var(--accent));margin-bottom:8px;display:inline-block;">Series</span>
+          ${series.year ? `<span style="font-size:10px;font-weight:700;padding:3px 10px;background:rgb(var(--text)/.06);border:1px solid rgb(var(--text)/.12);border-radius:999px;color:rgb(var(--muted));display:inline-block;">${series.year}</span>` : ''}
+          <h3 style="font-size:15px;font-weight:700;color:rgb(var(--text));margin:6px 0;line-height:1.3;">${series.title}</h3>
+          <p style="font-size:12px;color:rgb(var(--muted));margin:0;line-height:1.6;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">${series.desc}</p>
+        </div>
+        <div style="margin-top:10px;font-size:11px;font-weight:700;color:rgb(var(--muted));letter-spacing:.08em;">${series.episodes.length} EPISODE${series.episodes.length > 1 ? 'S' : ''}</div>
+      </div>
+    `;
+    row.addEventListener('click', () => openSeriesPage(series));
+    el.appendChild(row);
+  });
+  lucide.createIcons();
+}
+
+function openSeriesPage(series) {
+  // Set header info but don't load any episode yet
+  document.getElementById('vp-title').textContent = series.title;
+  document.getElementById('vp-badge').textContent = 'Series';
+  document.getElementById('vp-desc').textContent  = series.desc;
+  document.getElementById('vp-poster').src        = series.poster;
+
+  const frame  = document.getElementById('embed-frame');
+  const loader = document.getElementById('embed-loader');
+
+  // Show "please select an episode" placeholder instead of loading a video
+  loader.style.display = 'none';
+  frame.src = '';
+  frame.style.display = 'none';
+
+  // Show placeholder message over the embed area
+  let placeholder = document.getElementById('series-placeholder');
+  if (!placeholder) {
+    placeholder = document.createElement('div');
+    placeholder.id = 'series-placeholder';
+    placeholder.style.cssText = 'width:100%;aspect-ratio:16/9;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgb(var(--alt));border-radius:12px;gap:14px;';
+    placeholder.innerHTML = `
+      <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgb(var(--accent))" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="opacity:.5"><rect x="2" y="7" width="20" height="15" rx="2"/><polyline points="17 2 12 7 7 2"/></svg>
+      <div style="font-size:13px;font-weight:700;color:rgb(var(--muted));letter-spacing:.06em;text-transform:uppercase;">Please select an episode below</div>
+    `;
+    frame.parentNode.insertBefore(placeholder, frame);
+  }
+  placeholder.style.display = 'flex';
+
+  // Build episode list in related section
+  const relList = document.getElementById('related-list');
+  const relSec  = document.getElementById('related-section');
+  relList.innerHTML = '';
+  relSec.style.display = 'block';
+
+  // Change related section heading to Episodes
+  const relHead = relSec.querySelector('h3, [data-rel-head]');
+  if (relHead) relHead.textContent = 'Episodes';
+
+  let activeRow = null;
+
+  series.episodes.forEach((ep, i) => {
+    const r = document.createElement('div');
+    r.className = 'video-row';
+    r.style.cursor = 'pointer';
+    r.style.transition = 'background .15s, border-color .15s';
+    r.innerHTML = `
+
+      <div style="flex:1;padding:12px 16px;display:flex;flex-direction:column;justify-content:center;">
+        <div style="font-size:10px;font-weight:700;color:rgb(var(--accent));margin-bottom:3px;letter-spacing:.06em;">EP ${i + 1}</div>
+        <div style="font-size:13px;font-weight:700;color:rgb(var(--text));line-height:1.3;">${ep.title}</div>
+        <div style="font-size:11px;color:rgb(var(--muted));margin-top:3px;line-height:1.4;">${ep.desc}</div>
+      </div>
+    `;
+    r.addEventListener('click', () => {
+      // Highlight selected episode
+      if (activeRow) activeRow.style.background = '';
+      activeRow = r;
+      r.style.background = 'rgb(var(--accent)/.08)';
+
+      // Update title & desc
+      document.getElementById('vp-title').textContent = series.title + ' - ' + ep.title;
+      document.getElementById('vp-desc').textContent  = ep.desc;
+
+      // Hide placeholder, show frame, load episode
+      placeholder.style.display = 'none';
+      frame.style.display = 'block';
+      loader.style.display = 'flex';
+      frame.src = '';
+      setTimeout(() => {
+        frame.src = ep.url;
+        frame.onload = () => { loader.style.display = 'none'; };
+      }, 80);
+
+      // Scroll to top of content area
+      scrollBody.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    relList.appendChild(r);
+  });
+
+  updateBreadcrumb(series.title);
+  showVideoPage();
+  lucide.createIcons();
+}
+
+// ─────────────────────────────────────────────
 // VIDEO PAGE
 // ─────────────────────────────────────────────
-function openVideoPage([title, url, poster, category, desc]) {
+function openVideoPage([title, url, poster, _cat, desc]) {
+  const category = Array.isArray(_cat) ? _cat[0] : _cat;
+  // Hide series placeholder if visible
+  const ph = document.getElementById('series-placeholder');
+  if (ph) ph.style.display = 'none';
+  document.getElementById('embed-frame').style.display = 'block';
   document.getElementById('vp-title').textContent  = title;
   document.getElementById('vp-badge').textContent  = category;
   document.getElementById('vp-desc').textContent   = desc;
@@ -720,7 +1020,7 @@ function openVideoPage([title, url, poster, category, desc]) {
   // Related
   const relList = document.getElementById('related-list');
   relList.innerHTML = '';
-  const related = VIDEOS.filter(v => v[3] === category && v[0] !== title).slice(0, 4);
+  const related = VIDEOS.filter(v => { const vc = Array.isArray(v[3]) ? v[3] : [v[3]]; return vc.includes(category) && v[0] !== title; }).slice(0, 4);
   if (!related.length) {
     document.getElementById('related-section').style.display = 'none';
   } else {
@@ -858,30 +1158,27 @@ handleResize();
 // ─────────────────────────────────────────────
 function switchSidebarTab(tab) {
   currentTab = tab;
-  const videosPanel = document.getElementById('sidebar-panel-videos');
-  const sportsPanel = document.getElementById('sidebar-panel-sports');
-  const tabVideos = document.getElementById('tab-videos');
-  const tabSports = document.getElementById('tab-sports');
+  const videosPanel   = document.getElementById('sidebar-panel-videos');
+  const sportsPanel   = document.getElementById('sidebar-panel-sports');
+  const channelsPanel = document.getElementById('sidebar-panel-channels');
+  const tabVideos     = document.getElementById('tab-videos');
+  const tabSports     = document.getElementById('tab-sports');
+  const tabChannels   = document.getElementById('tab-channels');
 
-  if (tab === 'videos') {
-    videosPanel.style.display = '';
-    sportsPanel.style.display = 'none';
-    tabVideos.style.background = 'rgb(var(--accent)/.15)';
-    tabVideos.style.borderColor = 'rgb(var(--accent)/.4)';
-    tabVideos.style.color = 'rgb(var(--accent))';
-    tabSports.style.background = 'transparent';
-    tabSports.style.borderColor = 'rgb(var(--text)/.1)';
-    tabSports.style.color = 'rgb(var(--muted))';
-  } else {
-    videosPanel.style.display = 'none';
-    sportsPanel.style.display = '';
-    tabSports.style.background = 'rgb(var(--accent)/.15)';
-    tabSports.style.borderColor = 'rgb(var(--accent)/.4)';
-    tabSports.style.color = 'rgb(var(--accent))';
-    tabVideos.style.background = 'transparent';
-    tabVideos.style.borderColor = 'rgb(var(--text)/.1)';
-    tabVideos.style.color = 'rgb(var(--muted))';
-  }
+  const idle = { background: 'transparent', borderColor: 'rgb(var(--text)/.1)', color: 'rgb(var(--muted))' };
+  const active = { background: 'rgb(var(--accent)/.15)', borderColor: 'rgb(var(--accent)/.4)', color: 'rgb(var(--accent))' };
+
+  [tabVideos, tabSports, tabChannels].forEach(btn => {
+    if (!btn) return;
+    Object.assign(btn.style, idle);
+  });
+
+  const panels = { videos: videosPanel, sports: sportsPanel, channels: channelsPanel };
+  Object.entries(panels).forEach(([key, el]) => { if (el) el.style.display = key === tab ? '' : 'none'; });
+
+  const activeBtn = { videos: tabVideos, sports: tabSports, channels: tabChannels }[tab];
+  if (activeBtn) Object.assign(activeBtn.style, active);
+
   buildPills();
   showBrowse();
   filterAndRender();
@@ -904,6 +1201,3 @@ lucide.createIcons();
 </script>
 </body>
 </html>
-
-
-
