@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>World Cup 2026 Countdown</title>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:#000;color:#fff;font-family:'Inter',sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center;}
+.wc-wrap{padding:2.5rem 1.5rem;text-align:center;width:100%;max-width:600px;}
+.wc-badge{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:5px 14px;border-radius:999px;background:rgba(220,38,38,.15);color:#f87171;border:1px solid rgba(220,38,38,.35);margin-bottom:1.25rem;}
+.wc-title{font-family:'Press Start 2P',cursive;font-size:clamp(13px,3vw,19px);line-height:1.7;color:#fff;margin-bottom:.4rem;}
+.wc-sub{font-size:13px;color:rgba(255,255,255,.5);margin-bottom:1.5rem;letter-spacing:.04em;}
+.wc-matchup{display:flex;align-items:center;justify-content:center;gap:20px;margin-bottom:2rem;flex-wrap:wrap;}
+.wc-team{display:flex;flex-direction:column;align-items:center;gap:6px;}
+.wc-flag{font-size:38px;line-height:1;}
+.wc-team-name{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#fff;}
+.wc-vs{font-family:'Press Start 2P',cursive;font-size:12px;color:rgba(255,255,255,.4);padding:0 4px;}
+.wc-grid{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-bottom:1.75rem;}
+.wc-unit{min-width:82px;background:#111;border:1px solid #222;border-radius:14px;padding:1rem .75rem .75rem;position:relative;overflow:hidden;}
+.wc-unit::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:3px 3px 0 0;}
+.wc-unit.u-days::before{background:#dc2626;}
+.wc-unit.u-hours::before{background:#2563eb;}
+.wc-unit.u-mins::before{background:#16a34a;}
+.wc-unit.u-secs::before{background:#dc2626;}
+.wc-num{font-family:'Press Start 2P',cursive;font-size:clamp(22px,5vw,32px);color:#fff;display:block;line-height:1;margin-bottom:.6rem;}
+.wc-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);}
+.wc-progress-wrap{max-width:480px;margin:0 auto 1.5rem;}
+.wc-progress-label{display:flex;justify-content:space-between;font-size:11px;color:rgba(255,255,255,.4);margin-bottom:6px;letter-spacing:.04em;}
+.wc-bar-bg{height:6px;border-radius:999px;background:#1a1a1a;overflow:hidden;}
+.wc-bar-fill{height:100%;border-radius:999px;background:linear-gradient(90deg,#dc2626 0%,#2563eb 50%,#16a34a 100%);transition:width .5s ease;}
+.wc-hosts{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:1.5rem;}
+.wc-host{font-size:12px;font-weight:700;letter-spacing:.06em;padding:4px 12px;border-radius:999px;border:1px solid #222;color:rgba(255,255,255,.5);background:#111;}
+.wc-host.h-us{border-color:rgba(220,38,38,.4);color:#f87171;background:rgba(220,38,38,.08);}
+.wc-host.h-ca{border-color:rgba(220,38,38,.4);color:#f87171;background:rgba(220,38,38,.08);}
+.wc-host.h-mx{border-color:rgba(37,99,235,.4);color:#60a5fa;background:rgba(37,99,235,.08);}
+.wc-foot{font-size:11px;color:rgba(255,255,255,.3);letter-spacing:.04em;}
+.pulse{animation:pulse-anim .9s ease-in-out infinite;}
+@keyframes pulse-anim{0%,100%{opacity:1}50%{opacity:.35}}
+</style>
+</head>
+<body>
+<div class="wc-wrap">
+  <div class="wc-badge">
+    <span class="pulse" style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#dc2626;"></span>
+    FIFA World Cup 2026 · Opening Match
+  </div>
+  <div class="wc-title">THE WAIT IS<br>ALMOST OVER</div>
+  <div class="wc-sub">12 Jun 2026 · 3:00 AM SGT · Mexico City</div>
+
+  <div class="wc-matchup">
+    <div class="wc-team">
+      <div class="wc-flag">🇿🇦</div>
+      <div class="wc-team-name">South Africa</div>
+    </div>
+    <div class="wc-vs">VS</div>
+    <div class="wc-team">
+      <div class="wc-flag">🇲🇽</div>
+      <div class="wc-team-name">Mexico</div>
+    </div>
+  </div>
+
+  <div class="wc-grid">
+    <div class="wc-unit u-days"><span class="wc-num" id="days">00</span><span class="wc-label">Days</span></div>
+    <div class="wc-unit u-hours"><span class="wc-num" id="hours">00</span><span class="wc-label">Hours</span></div>
+    <div class="wc-unit u-mins"><span class="wc-num" id="mins">00</span><span class="wc-label">Mins</span></div>
+    <div class="wc-unit u-secs"><span class="wc-num" id="secs">00</span><span class="wc-label">Secs</span></div>
+  </div>
+
+  <div class="wc-progress-wrap">
+    <div class="wc-progress-label">
+      <span>Announced</span>
+      <span id="pct-label">0% to kickoff</span>
+    </div>
+    <div class="wc-bar-bg"><div class="wc-bar-fill" id="prog-bar" style="width:0%"></div></div>
+  </div>
+
+  <div class="wc-hosts">
+    <span class="wc-host h-us">🇺🇸 USA</span>
+    <span class="wc-host h-ca">🇨🇦 Canada</span>
+    <span class="wc-host h-mx">🇲🇽 Mexico</span>
+  </div>
+  <div class="wc-foot">48 teams · 104 matches · 16 host cities</div>
+</div>
+
+<script>
+const target = new Date('2026-06-11T19:00:00Z').getTime();
+const announced = new Date('2018-06-13T00:00:00Z').getTime();
+const total = target - announced;
+function pad(n){ return String(Math.floor(n)).padStart(2,'0'); }
+function tick(){
+  const now = Date.now();
+  const diff = target - now;
+  if(diff <= 0){
+    ['days','hours','mins','secs'].forEach(id => document.getElementById(id).textContent='00');
+    document.querySelector('.wc-sub').textContent="It's happening! South Africa vs Mexico is live!";
+    return;
+  }
+  document.getElementById('days').textContent  = pad(diff/86400000);
+  document.getElementById('hours').textContent = pad((diff%86400000)/3600000);
+  document.getElementById('mins').textContent  = pad((diff%3600000)/60000);
+  document.getElementById('secs').textContent  = pad((diff%60000)/1000);
+  const pct = Math.min(100, Math.round(((now-announced)/total)*100));
+  document.getElementById('prog-bar').style.width = pct+'%';
+  document.getElementById('pct-label').textContent = pct+'% to kickoff';
+}
+tick();
+setInterval(tick,1000);
+</script>
+</body>
+</html>

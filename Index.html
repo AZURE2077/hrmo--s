@@ -168,9 +168,14 @@
               <i data-lucide="trophy" style="width:14px;height:14px;"></i> Sports
             </button>
           </div>
-          <button id="tab-channels" onclick="switchSidebarTab('channels')" style="width:100%;padding:9px 6px;border-radius:10px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;transition:all .2s;border:1px solid rgb(var(--text)/.1);background:transparent;color:rgb(var(--muted));display:flex;align-items:center;justify-content:center;gap:6px;">
-            <i data-lucide="tv-2" style="width:14px;height:14px;"></i> Live Channels
-          </button>
+          <div style="display:flex;gap:6px;">
+            <button id="tab-channels" onclick="switchSidebarTab('channels')" style="flex:1;padding:9px 6px;border-radius:10px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;transition:all .2s;border:1px solid rgb(var(--text)/.1);background:transparent;color:rgb(var(--muted));display:flex;align-items:center;justify-content:center;gap:6px;">
+              <i data-lucide="tv-2" style="width:14px;height:14px;"></i> Channels
+            </button>
+            <button id="tab-chat" onclick="toggleChatPanel()" style="flex:1;padding:9px 6px;border-radius:10px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;transition:all .2s;border:1px solid rgb(var(--text)/.1);background:transparent;color:rgb(var(--muted));display:flex;align-items:center;justify-content:center;gap:6px;">
+              <i data-lucide="message-circle" style="width:14px;height:14px;"></i> Chat
+            </button>
+          </div>
         </div>
 
         <!-- Nav -->
@@ -212,7 +217,7 @@
           <!-- Channels panel -->
           <div id="sidebar-panel-channels" style="display:none;">
             <div style="font-size:10px;font-weight:700;color:rgb(var(--muted));padding:0 16px;margin-bottom:6px;letter-spacing:.1em;text-transform:uppercase;">Live Channels</div>
-            <div style="font-size:12px;color:rgb(var(--muted));padding:8px 16px;line-height:1.6;">Channels On Your Right --3</div>
+            <div style="font-size:12px;color:rgb(var(--muted));padding:8px 16px;line-height:1.6;">Select a channel to watch live.</div>
           </div>
 
           <!-- Series panel -->
@@ -516,6 +521,7 @@ const VIDEOS = [
 ["Mr Beast Channel",          "https://aegis-cloudfront-1.tubi.video/cf8b86e9-932a-4454-99c5-32169b6a330f/playlist.m3u8", "mrb.png", "channels",    "Mr Beast gimme some money im broge", 0000],
 ["F1 Live(Sky Sports)",          "https://proxy.f1live.dpdns.org/m3u8?url=http://stream.bottledesk.net/p/AwZGQwwEZA/tracks-v1a1/mono.m3u8?token=c1lhdWg1N0lxNldaaE12ZnJ0MkRsY1NtcVoyQnk2eUYzWXVkbUthcHhxekRxNEduaVp1UnBxU2VlWmF0ZnRlRGxaMm0wNStDbnJOOXJJM0puSytpbkE9PQ==", "f1tv.png", "channels",    "Watch Formula 1 Live on Sky Sports with replays of matches", 0000],
 ["F1 Live",          "https://proxy.f1live.dpdns.org/m3u8?url=http://stream.bottledesk.net/p/AwZGQwwEZA/tracks-v1a1/mono.m3u8?token=c1lhdWg1N0lxNldaaE12ZnJ0MkRsY1NtcVoyQnk2eUYzWXVkbUthcHhxekRxNEduaVp1UnBxU2VlWmF0ZnRlRGxaMm0wNStDbnJOOXJJM0puSytpbkE9PQ==", "f1tv.png", "Motorsports",    "Watch F1 Races Live on Sky Sports(P.S. Takes some time to load and if too many watch there is some lag.)", 0000],
+["FIFA World Cup Countdown",          "wc26.html", "wc.png", "Football",    "The wait is over!!! The World cup is hererere", 2026],
 
 ];
 
@@ -863,7 +869,7 @@ function renderMixed(videoList, seriesList) {
   if (!videoList.length && !seriesList.length) {
     el.style.display = 'none';
     empty.style.display = 'flex';
-    lucide.createIcons();
+    if(typeof lucide!=="undefined")lucide.createIcons();
     return;
   }
 
@@ -893,6 +899,7 @@ function renderMixed(videoList, seriesList) {
           <h3 style="font-size:15px;font-weight:700;color:rgb(var(--text));margin:0 0 6px;line-height:1.3;">${title}</h3>
           <p style="font-size:12px;color:rgb(var(--muted));margin:0;line-height:1.6;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">${desc}</p>
         </div>
+        ${(currentTab === 'channels' || currentTab === 'sports') ? '<button class="chat-row-btn" onclick="event.stopPropagation();toggleChatPanel();" style="margin:10px 0 0;align-self:flex-start;display:flex;align-items:center;gap:6px;padding:6px 13px;background:rgb(var(--accent)/.1);border:1px solid rgb(var(--accent)/.25);border-radius:999px;color:rgb(var(--accent));font-size:11px;font-weight:700;cursor:pointer;letter-spacing:.06em;text-transform:uppercase;"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\"><path d=\"M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z\"/></svg> Live Chat</button>' : ''}
       </div>
     `;
     row.addEventListener('click', () => openVideoPage(video));
@@ -928,7 +935,7 @@ function renderMixed(videoList, seriesList) {
     el.appendChild(row);
   });
 
-  lucide.createIcons();
+  if(typeof lucide!=="undefined")lucide.createIcons();
 }
 
 function renderList(list) {
@@ -939,7 +946,7 @@ function renderList(list) {
   if (!list.length) {
     el.style.display='none';
     empty.classList.remove('hidden-view'); empty.style.display='flex';
-    lucide.createIcons();
+    if(typeof lucide!=="undefined")lucide.createIcons();
     return;
   }
   empty.classList.add('hidden-view');
@@ -980,7 +987,7 @@ function renderList(list) {
     row.addEventListener('click', () => openVideoPage(video));
     el.appendChild(row);
   });
-  lucide.createIcons();
+  if(typeof lucide!=="undefined")lucide.createIcons();
 }
 
 // ─────────────────────────────────────────────
@@ -994,7 +1001,7 @@ function renderSeriesList(list) {
   if (!list.length) {
     el.style.display = 'none';
     empty.classList.remove('hidden-view'); empty.style.display = 'flex';
-    lucide.createIcons(); return;
+    if(typeof lucide!=="undefined")lucide.createIcons(); return;
   }
   empty.classList.add('hidden-view');
   el.style.display = 'flex';
@@ -1027,7 +1034,7 @@ function renderSeriesList(list) {
     row.addEventListener('click', () => openSeriesPage(series));
     el.appendChild(row);
   });
-  lucide.createIcons();
+  if(typeof lucide!=="undefined")lucide.createIcons();
 }
 
 function openSeriesPage(series) {
@@ -1112,7 +1119,7 @@ function openSeriesPage(series) {
 
   updateBreadcrumb(series.title);
   showVideoPage();
-  lucide.createIcons();
+  if(typeof lucide!=="undefined")lucide.createIcons();
 }
 
 // ─────────────────────────────────────────────
@@ -1168,7 +1175,7 @@ function openVideoPage([title, url, poster, _cat, desc]) {
 
   updateBreadcrumb(title);
   showVideoPage();
-  lucide.createIcons();
+  if(typeof lucide!=="undefined")lucide.createIcons();
 }
 
 // Fullscreen
@@ -1304,12 +1311,15 @@ function switchSidebarTab(tab) {
   buildPills();
   showBrowse();
   filterAndRender();
-  lucide.createIcons();
+  if(typeof lucide!=="undefined")lucide.createIcons();
 }
 
 // ─────────────────────────────────────────────
 // INIT
 // ─────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  if (typeof lucide !== 'undefined') if(typeof lucide!=="undefined")lucide.createIcons();
+});
 applyCfg();
 buildThemeGrid();
 filterAndRender();
@@ -1319,7 +1329,133 @@ if (window.innerWidth >= 768) {
   sidebar.style.height = '100%';
 }
 handleResize();
-lucide.createIcons();
+if(typeof lucide!=="undefined")lucide.createIcons();
 </script>
+
+  <!-- Chat Side Panel -->
+  <div id="chat-panel" style="position:fixed;top:0;right:-420px;width:min(420px,95vw);height:100vh;background:rgb(var(--alt));border-left:1px solid rgb(var(--text)/.1);z-index:200;display:flex;flex-direction:column;transition:right .3s cubic-bezier(.4,0,.2,1);box-shadow:-8px 0 40px rgba(0,0,0,.35);">
+    <!-- Panel Header -->
+    <div style="display:flex;align-items:center;gap:10px;padding:16px 18px;border-bottom:1px solid rgb(var(--text)/.08);flex-shrink:0;">
+      <span style="width:8px;height:8px;border-radius:50%;background:#22c55e;display:inline-block;animation:pulse 2s ease-in-out infinite;"></span>
+      <span style="font-family:'Press Start 2P',cursive;font-size:9px;color:rgb(var(--text));letter-spacing:.06em;">LIVE CHAT</span>
+      <span id="chat-online" style="margin-left:auto;font-size:11px;color:rgb(var(--muted));"></span>
+      <button onclick="toggleChatPanel()" style="background:rgb(var(--text)/.06);border:1px solid rgb(var(--text)/.1);border-radius:8px;padding:6px 10px;color:rgb(var(--muted));cursor:pointer;font-size:12px;display:flex;align-items:center;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <!-- Messages -->
+    <div id="chat-messages" style="flex:1;overflow-y:auto;padding:14px 16px;display:flex;flex-direction:column;gap:10px;scroll-behavior:smooth;">
+      <div data-placeholder style="text-align:center;font-size:11px;color:rgb(var(--muted));padding:30px 0;">Connecting to chat...</div>
+    </div>
+    <!-- Input -->
+    <div style="padding:12px 16px;border-top:1px solid rgb(var(--text)/.08);flex-shrink:0;display:flex;gap:8px;">
+      <input id="chat-input" type="text" maxlength="300" placeholder="Say something..." style="flex:1;background:rgb(var(--card));border:1px solid rgb(var(--text)/.12);border-radius:10px;padding:10px 14px;font-size:13px;color:rgb(var(--text));outline:none;font-family:inherit;" />
+      <button id="chat-send" style="padding:10px 16px;background:rgb(var(--accent)/.15);border:1px solid rgb(var(--accent)/.3);border-radius:10px;color:rgb(var(--accent));font-size:11px;font-weight:700;cursor:pointer;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;">Send</button>
+    </div>
+  </div>
+  <!-- Chat overlay backdrop -->
+  <div id="chat-backdrop" onclick="toggleChatPanel()" style="position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:199;display:none;backdrop-filter:blur(2px);"></div>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
+  <script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyD4MnYVkSoA8fJyBOrgTW-ytk4dsa2LriM",
+    authDomain: "chatthrbox.firebaseapp.com",
+    databaseURL: "https://chatthrbox-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "chatthrbox",
+    storageBucket: "chatthrbox.firebasestorage.app",
+    messagingSenderId: "747767987220",
+    appId: "1:747767987220:web:6a163d24d6bad0db49fb01"
+  };
+  firebase.initializeApp(firebaseConfig);
+  const db   = firebase.database();
+  const auth = firebase.auth();
+
+  let myUid  = null;
+  let myName = null;
+  let chatInitialised = false;
+  let chatOpen = false;
+
+  function adjective() {
+    const a = ['Swift','Bold','Quiet','Clever','Bright','Silent','Wild','Calm','Fierce','Gentle'];
+    const n = ['Fox','Wolf','Hawk','Bear','Lion','Tiger','Eagle','Shark','Panda','Otter'];
+    return a[Math.floor(Math.random()*a.length)] + n[Math.floor(Math.random()*n.length)];
+  }
+  function escHtml(s) {
+    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+  function timeStr(ts) {
+    const d = new Date(ts);
+    return d.getHours().toString().padStart(2,'0') + ':' + d.getMinutes().toString().padStart(2,'0');
+  }
+
+  function appendMsg(data, isOwn) {
+    const box = document.getElementById('chat-messages');
+    if (!box) return;
+    const placeholder = box.querySelector('[data-placeholder]');
+    if (placeholder) placeholder.remove();
+    const row = document.createElement('div');
+    row.style.cssText = 'display:flex;flex-direction:column;gap:3px;' + (isOwn ? 'align-items:flex-end;' : 'align-items:flex-start;');
+    row.innerHTML = `
+      <div style="display:flex;align-items:baseline;gap:6px;${isOwn?'flex-direction:row-reverse;':''}">
+        <span style="font-size:10px;font-weight:700;color:rgb(var(--accent));letter-spacing:.04em;">${escHtml(data.name)}</span>
+        <span style="font-size:10px;color:rgb(var(--muted));">${timeStr(data.ts)}</span>
+      </div>
+      <div style="max-width:85%;padding:9px 13px;border-radius:${isOwn?'14px 14px 4px 14px':'14px 14px 14px 4px'};background:${isOwn?'rgb(var(--accent)/.18)':'rgb(var(--card))'};border:1px solid ${isOwn?'rgb(var(--accent)/.25)':'rgb(var(--text)/.08)'};font-size:13px;color:rgb(var(--text));line-height:1.5;word-break:break-word;">${escHtml(data.text)}</div>
+    `;
+    box.appendChild(row);
+    box.scrollTop = box.scrollHeight;
+  }
+
+  function initChat() {
+    if (chatInitialised) return;
+    chatInitialised = true;
+    auth.signInAnonymously().then(result => {
+      myUid  = result.user.uid;
+      myName = adjective();
+      const onlineEl = document.getElementById('chat-online');
+      if (onlineEl) onlineEl.textContent = myName;
+      const msgRef = db.ref('messages').limitToLast(60);
+      const box = document.getElementById('chat-messages');
+      if (box) box.innerHTML = '';
+      msgRef.on('child_added', snap => {
+        const d = snap.val();
+        appendMsg(d, d.uid === myUid);
+      });
+    }).catch(() => {
+      const box = document.getElementById('chat-messages');
+      if (box) box.innerHTML = '<div data-placeholder style="text-align:center;font-size:11px;color:rgb(var(--muted));padding:30px 0;">Chat unavailable — check Firebase rules.</div>';
+    });
+    document.getElementById('chat-send').addEventListener('click', sendMsg);
+    document.getElementById('chat-input').addEventListener('keydown', e => { if (e.key === 'Enter') sendMsg(); });
+  }
+
+  function sendMsg() {
+    const input = document.getElementById('chat-input');
+    const text  = input.value.trim();
+    if (!text || !myUid) return;
+    input.value = '';
+    db.ref('messages').push({ text, name: myName, uid: myUid, ts: Date.now() });
+  }
+
+  function toggleChatPanel() {
+    const panel    = document.getElementById('chat-panel');
+    const backdrop = document.getElementById('chat-backdrop');
+    const tabBtn   = document.getElementById('tab-chat');
+    chatOpen = !chatOpen;
+    panel.style.right    = chatOpen ? '0' : '-420px';
+    backdrop.style.display = chatOpen ? 'block' : 'none';
+    if (tabBtn) {
+      tabBtn.style.background    = chatOpen ? 'rgb(var(--accent)/.15)' : 'transparent';
+      tabBtn.style.borderColor   = chatOpen ? 'rgb(var(--accent)/.4)'  : 'rgb(var(--text)/.1)';
+      tabBtn.style.color         = chatOpen ? 'rgb(var(--accent))'     : 'rgb(var(--muted))';
+    }
+    if (chatOpen) initChat();
+  }
+  window.toggleChatPanel = toggleChatPanel;
+  </script>
 </body>
 </html>
