@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>World Cup 2026 Countdown</title>
+<title>World Cup 2026 — Brazil vs Morocco</title>
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
@@ -44,20 +44,20 @@ body{background:#000;color:#fff;font-family:'Inter',sans-serif;min-height:100vh;
 <div class="wc-wrap">
   <div class="wc-badge">
     <span class="pulse" style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#dc2626;"></span>
-    FIFA World Cup 2026 · Opening Match
+    FIFA World Cup 2026 · Group C Match 1
   </div>
-  <div class="wc-title">THE WAIT IS<br>ALMOST OVER</div>
-  <div class="wc-sub">12 Jun 2026 · 3:00 AM SGT · Mexico City</div>
+  <div class="wc-title">THIS STREAM WILL BE ADDED<br>AT 5:30 A.M. SGT | 14th June</div>
+  <div class="wc-sub">14 Jun 2026 · 6:00 AM SGT · New York</div>
 
   <div class="wc-matchup">
     <div class="wc-team">
-      <div class="wc-flag">🇿🇦</div>
-      <div class="wc-team-name">South Africa</div>
+      <div class="wc-flag">🇧🇷</div>
+      <div class="wc-team-name">Brazil</div>
     </div>
     <div class="wc-vs">VS</div>
     <div class="wc-team">
-      <div class="wc-flag">🇲🇽</div>
-      <div class="wc-team-name">Mexico</div>
+      <div class="wc-flag">🇲🇦</div>
+      <div class="wc-team-name">Morocco</div>
     </div>
   </div>
 
@@ -70,10 +70,18 @@ body{background:#000;color:#fff;font-family:'Inter',sans-serif;min-height:100vh;
 
   <div class="wc-progress-wrap">
     <div class="wc-progress-label">
-      <span>Announced</span>
-      <span id="pct-label">0% to kickoff</span>
+      <span style="color:#4ade80;font-weight:700;">🇧🇷 Brazil 59%</span>
+      <span style="color:rgba(255,255,255,.4);font-weight:700;">Draw 24%</span>
+      <span style="color:#f87171;font-weight:700;">Morocco 17% 🇲🇦</span>
     </div>
-    <div class="wc-bar-bg"><div class="wc-bar-fill" id="prog-bar" style="width:0%"></div></div>
+    <div class="wc-bar-bg" style="height:8px;">
+      <div style="height:100%;display:flex;border-radius:999px;overflow:hidden;">
+        <div style="width:59%;background:#4ade80;"></div>
+        <div style="width:24%;background:rgba(255,255,255,.2);"></div>
+        <div style="width:17%;background:#f87171;"></div>
+      </div>
+    </div>
+    <div style="text-align:center;font-size:10px;color:rgba(255,255,255,.25);margin-top:6px;letter-spacing:.06em;text-transform:uppercase;">Win Probability</div>
   </div>
 
   <div class="wc-hosts">
@@ -85,7 +93,7 @@ body{background:#000;color:#fff;font-family:'Inter',sans-serif;min-height:100vh;
 </div>
 
 <script>
-const target = new Date('2026-06-11T19:00:00Z').getTime();
+const target = new Date('2026-06-13T22:00:00Z').getTime();
 const announced = new Date('2018-06-13T00:00:00Z').getTime();
 const total = target - announced;
 function pad(n){ return String(Math.floor(n)).padStart(2,'0'); }
@@ -94,16 +102,14 @@ function tick(){
   const diff = target - now;
   if(diff <= 0){
     ['days','hours','mins','secs'].forEach(id => document.getElementById(id).textContent='00');
-    document.querySelector('.wc-sub').textContent="It's happening! South Africa vs Mexico is live!";
+    document.querySelector('.wc-sub').textContent="Here We Go!";
     return;
   }
   document.getElementById('days').textContent  = pad(diff/86400000);
   document.getElementById('hours').textContent = pad((diff%86400000)/3600000);
   document.getElementById('mins').textContent  = pad((diff%3600000)/60000);
   document.getElementById('secs').textContent  = pad((diff%60000)/1000);
-  const pct = Math.min(100, Math.round(((now-announced)/total)*100));
-  document.getElementById('prog-bar').style.width = pct+'%';
-  document.getElementById('pct-label').textContent = pct+'% to kickoff';
+
 }
 tick();
 setInterval(tick,1000);
